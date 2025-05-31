@@ -1,5 +1,10 @@
 import plotly.graph_objects as go
 import pandas as pd
+import plotly.graph_objects as go
+import pandas as pd
+import plotly.io as pio
+pio.renderers.default = 'browser'  # 브라우저에서 그래프 열기
+
 
 # 시가총액 데이터 (단위: 조 달러)
 data = {
