@@ -1,10 +1,8 @@
+import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
-import plotly.io as pio
-pio.renderers.default = 'browser'  # 브라우저에서 그래프 열기
 
-
-# 시가총액 데이터 (단위: 조 달러)
+# 데이터 준비
 data = {
     '기업명': ['Apple', 'Microsoft', 'Alphabet', 'Amazon', 'NVIDIA', 'Meta Platforms', 'Tesla', 'Berkshire Hathaway', 'TSMC', 'Saudi Aramco'],
     '2022': [2.07, 1.79, 1.15, 0.86, 0.68, 0.36, 0.38, 0.68, 0.54, 1.86],
@@ -14,10 +12,13 @@ data = {
 
 df = pd.DataFrame(data)
 
-# 연도별 시가총액 변화를 선 그래프로 표시
-fig = go.Figure()
+# Streamlit 타이틀
+st.title("2022~2024년 시가총액 상위 10개 기업 변화 그래프")
 
+# Plotly Figure 생성
+fig = go.Figure()
 years = ['2022', '2023', '2024']
+
 for i in range(len(df)):
     fig.add_trace(go.Scatter(
         x=years,
@@ -27,11 +28,11 @@ for i in range(len(df)):
     ))
 
 fig.update_layout(
-    title='2022~2024년 시가총액 상위 10개 기업의 시가총액 변화',
     xaxis_title='연도',
     yaxis_title='시가총액 (조 달러)',
-    hovermode='x unified'
+    hovermode='x unified',
+    legend_title="기업명"
 )
 
-fig.show()
-fig.write_html("marketcap_chart.html")
+# Streamlit에 Plotly 그래프 표시
+st.plotly_chart(fig, use_container_width=True)
