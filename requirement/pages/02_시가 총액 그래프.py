@@ -2,20 +2,15 @@ import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
 
-# 데이터 준비
 data = {
-    '기업명': ['Apple', 'Microsoft', 'Alphabet', 'Amazon', 'NVIDIA', 'Meta Platforms', 'Tesla', 'Berkshire Hathaway', 'TSMC', 'Saudi Aramco'],
-    '2022': [2.07, 1.79, 1.15, 0.86, 0.68, 0.36, 0.38, 0.68, 0.54, 1.86],
-    '2023': [2.87, 2.53, 1.92, 1.87, 1.66, 0.59, 0.39, 0.70, 0.45, 2.11],
-    '2024': [3.78, 3.13, 2.32, 2.30, 3.28, 1.47, 1.29, 1.02, 1.02, 1.80]
+    '기업명': ['Apple', 'Microsoft', 'Alphabet'],
+    '2022': [2.07, 1.79, 1.15],
+    '2023': [2.87, 2.53, 1.92],
+    '2024': [3.78, 3.13, 2.32]
 }
 
 df = pd.DataFrame(data)
 
-# Streamlit 타이틀
-st.title("2022~2024년 시가총액 상위 10개 기업 변화 그래프")
-
-# Plotly Figure 생성
 fig = go.Figure()
 years = ['2022', '2023', '2024']
 
@@ -27,12 +22,5 @@ for i in range(len(df)):
         name=df.loc[i, '기업명']
     ))
 
-fig.update_layout(
-    xaxis_title='연도',
-    yaxis_title='시가총액 (조 달러)',
-    hovermode='x unified',
-    legend_title="기업명"
-)
-
-# Streamlit에 Plotly 그래프 표시
+st.title("시가총액 변화")
 st.plotly_chart(fig, use_container_width=True)
