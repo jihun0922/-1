@@ -4,3 +4,4 @@ koreanize_matplotlib
 streamlit-folium
 pandas==1.5.3
 plotly==5.15.0
+streamlit run app.py
