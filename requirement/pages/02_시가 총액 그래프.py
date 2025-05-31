@@ -34,3 +34,4 @@ fig.update_layout(
 )
 
 fig.show()
+fig.write_html("marketcap_chart.html")
